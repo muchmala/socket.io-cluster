@@ -29,8 +29,7 @@ var message = opts.get('message') || '{"some":"data"}';
 var count =  opts.get('count') || 1;
 var timeout =  opts.get('timeout') || 1000;
 
-var mqConnection = queue.getConnection(config);
-var publisher = mqConnection.getPublisher();
+var publisher = queue.getPublisher(config);
 
 function sendMessage(message, count, timeout) {
     publisher.publish('broadcast', message, function() {
@@ -41,7 +40,7 @@ function sendMessage(message, count, timeout) {
                 sendMessage(message, count, timeout);
             }, timeout);
         } else {
-            mqConnection.close();
+            publisher.disconnect();
         }
     });
 }

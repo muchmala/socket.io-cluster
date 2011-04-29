@@ -18,6 +18,10 @@ listener.prototype.subscribe = function(channel, callback) {
     this.client.subscribe(channel);
 };
 
+listener.prototype.disconnect = function() {
+    this.connection.close();
+};
+
 
 function publisher(connection) {
     this.connection = connection;
@@ -32,4 +36,8 @@ publisher.prototype.publish = function(channel, message, callback) {
     }
 
     this.client.publish.apply(this.client, args);
+};
+
+publisher.prototype.disconnect = function() {
+    this.connection.close();
 };
