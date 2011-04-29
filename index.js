@@ -1,10 +1,13 @@
+var socketio = require('socket.io'),
+    queue = require('./queue');
+
 exports.listen = listen;
 
 function listen(server, config) {
     var listener = queue.getListener(config);
     var publisher = queue.getPublisher(config);
 
-    var io = io.listen(server);
+    var io = socketio.listen(server);
 
     io.on('connection', function(client) {
         listener.subscribe('broadcast', function(message) {
