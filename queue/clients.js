@@ -1,6 +1,15 @@
 exports.listener = listener;
 exports.publisher = publisher;
 
+function baseClient(connection) {
+    this.connection = connection;
+}
+
+baseClient.prototype.disconnect = function() {
+    this.connection.close();
+};
+
+
 function listener(connection) {
     this.connection = connection;
     this.client = connection.client;
@@ -13,13 +22,12 @@ function listener(connection) {
     });
 }
 
+listener.prototype.__proto__ = baseClient.prototype;
+
 listener.prototype.subscribe = function(channel, callback) {
     this.subscriptions[channel] = callback;
     this.client.subscribe(channel);
-};
-
-listener.prototype.disconnect = function() {
-    this.connection.close();
+    return this;
 };
 
 
@@ -36,8 +44,7 @@ publisher.prototype.publish = function(channel, message, callback) {
     }
 
     this.client.publish.apply(this.client, args);
+    return this;
 };
 
-publisher.prototype.disconnect = function() {
-    this.connection.close();
-};
+publisher.prototype.__proto__ = baseClient.prototype;

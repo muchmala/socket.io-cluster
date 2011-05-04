@@ -1,27 +1,17 @@
-var socketio = require('socket.io'),
-    queue = require('./queue');
+var io = require('socket.io'),
+    listener = require('./lib/server').listener,
+    clientListener = require('./lib/client').listener;
 
 exports.listen = listen;
+exports.getClient = getClient;
 
 function listen(server, config) {
-    var listener = queue.getListener(config);
-    var publisher = queue.getPublisher(config);
+    var socketIo = io.listen(server);
+    new listener(socketIo, config);
 
-    var io = socketio.listen(server);
+    return socketIo;
+}
 
-    io.on('connection', function(client) {
-        listener.subscribe('broadcast', function(message) {
-            io.broadcast(message);
-        });
-
-        client.on('message', function(message) {
-            publisher.publish('message', {message: message, client: client.sessionId});
-        });
-
-        client.on('disconnect', function() {
-            publisher.publish('disconnect', {client: client.sessionId});
-        });
-
-        publisher.publish('connect', {client: client.sessionId});
-    });
+function getClient(config) {
+    return new clientListener(config);
 }
