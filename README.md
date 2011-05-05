@@ -71,13 +71,13 @@ After installing all dependencies make following steps:
 
 ### io-node listener
 
-ioCluster.listen(<http.Server>, config)
+    ioCluster.listen(<http.Server>, config)
 
 Returns: io-node `Listener` instance.
 
 ### app-node listener
 
-ioCluster.getClient(config);
+    ioCluster.getClient(config);
 
 Returns: app-node `Listener` instance.
 It's public interface is the same as Socket.IO `Listener's` public interface. For documentation please check (https://github.com/LearnBoost/Socket.IO-node)
