@@ -82,3 +82,9 @@ Returns: io-node `Listener` instance.
 Returns: app-node `Listener` instance.
 It's public interface is the same as Socket.IO `Listener's` public interface. For documentation please check (https://github.com/LearnBoost/Socket.IO-node)
 
+## Stateless app-node approach
+
+If you want your application to be really highly available you should design it to be stateless so you can restart any
+node without need to restart all application. The problem is that when you restart app-node, you loose context. So when
+one of users sends message you do not have instance of client and need to recreate it. So `io.on('connection',..)` has
+special flag as argument `isReconnect`.
