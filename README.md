@@ -45,24 +45,25 @@ like Redis host and port and I think it's pretty much self-explaining:
 
 ### How to run the example
 After installing all dependencies make following steps:
-1. Start Redis (likely,
 
-    cd path/to/your/redis/
-    src/redis-server
+1. Start Redis
+
+        cd path/to/your/redis/
+        src/redis-server
 
 2. Go to Socket.IO-cluster dir:
 
-    cd path/to/socket.io-cluster
+        cd path/to/socket.io-cluster
 
 3. Start app-node:
 
-    node tests/appNode.js
+        node tests/appNode.js
 
 4. Start some io-nodes:
 
-    node tests/ioNode.js -p 8080
-    node tests/ioNode.js -p 8081
-    ...
+        node tests/ioNode.js -p 8080
+        node tests/ioNode.js -p 8081
+        ...
 
 5. Point your browser to `http://localhost:8080`, `http://localhost:8081` and so on.
 
