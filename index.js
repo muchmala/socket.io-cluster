@@ -1,17 +1,17 @@
 var io = require('socket.io'),
-    listener = require('./lib/server').listener,
-    clientListener = require('./lib/client').listener;
+    ioNode = require('./lib/io-node').listener,
+    appNode = require('./lib/app-node').listener;
 
 exports.listen = listen;
 exports.getClient = getClient;
 
 function listen(server, config) {
     var socketIo = io.listen(server);
-    new listener(socketIo, config);
+    new ioNode(socketIo, config);
 
     return socketIo;
 }
 
 function getClient(config) {
-    return new clientListener(config);
+    return new appNode(config);
 }

@@ -86,5 +86,5 @@ It's public interface is the same as Socket.IO `Listener's` public interface. Fo
 
 If you want your application to be really highly available you should design it to be stateless so you can restart any
 node without need to restart all application. The problem is that when you restart app-node, you loose context. So when
-one of users sends message you do not have instance of client and need to recreate it. So `io.on('connection',..)` has
-special flag as argument `isReconnect`.
+one of users sends message you do not have instance of client and need to recreate it. So app-node has special event
+`no-client` which means that there was no client and it was recreated.

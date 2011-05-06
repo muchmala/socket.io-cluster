@@ -4,14 +4,13 @@ var iocluster = require('..'),
 var io = iocluster.getClient(config);
 var buffer = [];
 
-io.on('connection', function(client, isReconnect) {
-    console.log('Client %s connected', client.sessionId);
+io.on('connection', function(client) {
+    initialise(client);
+    subscribeEvents(client);
+});
+io.on('no-client', subscribeEvents);
 
-    if (!isReconnect) {
-        client.send({ buffer: buffer });
-        client.broadcast({ announcement: client.sessionId + ' connected' });
-    }
-
+function subscribeEvents(client) {
     client.on('message', function(message) {
         console.log('Message from client %s: [%o]', client.sessionId, message);
 
@@ -26,5 +25,11 @@ io.on('connection', function(client, isReconnect) {
 
         client.broadcast({ announcement: client.sessionId + ' disconnected' });
     });
-});
+}
 
+function initialise(client) {
+    console.log('Client %s connected', client.sessionId);
+
+    client.send({ buffer: buffer });
+    client.broadcast({ announcement: client.sessionId + ' connected' });
+}
