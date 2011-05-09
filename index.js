@@ -7,9 +7,8 @@ exports.getClient = getClient;
 
 function listen(server, config) {
     var socketIo = io.listen(server);
-    new ioNode(socketIo, config);
 
-    return socketIo;
+    return new ioNode(socketIo, config);
 }
 
 function getClient(config) {
