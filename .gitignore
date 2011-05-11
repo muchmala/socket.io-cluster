@@ -1,0 +1,3 @@
+node_modules/redis
+node_modules/hiredis
+node_modules/opts
