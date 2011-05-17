@@ -12,8 +12,7 @@
   , "url" : "https://github.com/muchmala/socket.io-cluster.git"
   }
 , "dependencies" :
-  { "hiredis": "~0"
-  , "redis": "~0"
+  { "rq": "~0"
   , "socket.io": "https://github.com/muchmala/Socket.IO-node/tarball/master"
   }
 , "devDependencies":
