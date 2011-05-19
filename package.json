@@ -13,7 +13,7 @@
   }
 , "dependencies" :
   { "rq": "~0"
-  , "socket.io": "https://github.com/muchmala/Socket.IO-node/tarball/master"
+  , "socket.io": "https://github.com/muchmala/Socket.IO-node/tarball/channels"
   }
 , "devDependencies":
   { "opts" : "~1"

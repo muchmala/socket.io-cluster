@@ -48,4 +48,4 @@ send404 = function(res){
 };
 
 server.listen(port);
-iocluster.listen(server, config);
+iocluster.makeIoListener(server, config);

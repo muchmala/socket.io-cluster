@@ -6,6 +6,7 @@ config.HTTP_PORT = 8080;
 config.REDIS_HOST = '127.0.0.1';
 config.REDIS_PORT = 6379;
 config.REDIS_PASSWORD = undefined;
+config.REDIS_DATABASE = 0;
 
 try {
     var config_local = require('./config.local.js');
