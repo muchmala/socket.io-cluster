@@ -1,7 +1,7 @@
 { "name" : "socket.io-cluster"
 , "description" : "Scalable Socket.IO"
 , "author" : "Taras Kunch <taras.kunch@gmail.com>"
-, "version" : "0.0.1"
+, "version" : "0.0.2"
 , "main" : "index.js"
 , "engines" :
   { "node" : "~0.4"
@@ -12,9 +12,10 @@
   , "url" : "https://github.com/muchmala/socket.io-cluster.git"
   }
 , "dependencies" :
-  { "opts" : "~1"
-  , "hiredis": "~0"
-  , "redis": "~0"
+  { "rq": "~0"
   , "socket.io": "https://github.com/muchmala/Socket.IO-node/tarball/channels"
+  }
+, "devDependencies":
+  { "opts" : "~1"
   }
 }

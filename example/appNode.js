@@ -1,7 +1,7 @@
 var iocluster = require('..'),
     config = require('./config');
 
-var io = iocluster.getClient(config);
+var io = iocluster.makeListener(config);
 var buffer = [];
 
 io.on('connection', function(client) {
@@ -28,6 +28,7 @@ function subscribeEvents(client) {
 }
 
 function initialise(client) {
+    console.log(client);
     console.log('Client %s connected', client.sessionId);
 
     client.send({ buffer: buffer });

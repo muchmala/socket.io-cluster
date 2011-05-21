@@ -1,21 +1,8 @@
 var http = require('http'),
     url = require('url'),
     fs = require('fs'),
-    opts = require('opts'),
-    iocluster = require('..'),
+    socketIoCluster = require('..'),
     config = require('./config');
-
-opts.parse([
-    {
-        'short': 'p',
-        'long': 'port',
-        'description': 'HTTP port',
-        'value': true,
-        'required': false
-    }
-], true);
-
-var port = opts.get('port') || config.HTTP_PORT;
 
 server = http.createServer(function(req, res){
   // your normal server code
@@ -37,7 +24,7 @@ server = http.createServer(function(req, res){
       });
       break;
 
-    default: send404(res);
+    //default: send404(res);
   }
 }),
 
@@ -47,5 +34,5 @@ send404 = function(res){
   res.end();
 };
 
-server.listen(port);
-iocluster.makeIoListener(server, config);
+server.listen(config.HTTP_PORT);
+socketIoCluster.makeFrontendServer(server, config);
