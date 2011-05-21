@@ -1,7 +1,7 @@
 { "name" : "socket.io-cluster"
 , "description" : "Scalable Socket.IO"
 , "author" : "Taras Kunch <taras.kunch@gmail.com>"
-, "version" : "0.1.0"
+, "version" : "0.1.1"
 , "main" : "index.js"
 , "engines" :
   { "node" : "~0.4"

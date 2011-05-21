@@ -11,8 +11,8 @@ config.REDIS_DATABASE = 0;
 config.CLIENT_CONFIG_URL = '/config.js';
 
 config.IO_SERVERS = [
-    {internal: '0.0.0.0', external: '33.33.33.10', port: 8081},
-    {internal: '0.0.0.0', external: '33.33.33.10', port: 8082}
+    {externalHost: '33.33.33.10', externalPort: 8081, internalHost: '0.0.0.0', internalPort: 8081},
+    {externalHost: '33.33.33.10', externalPort: 8082, internalHost: '0.0.0.0', internalPort: 8082}
 ];
 
 try {
