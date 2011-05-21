@@ -125,9 +125,10 @@ Returns new instance of `frontend-node`
 
 ### io-node
 
-    ioCluster.makeIoServer(<socketIo.Listener>, config)
+    ioNode.Server:
+        createMessage(client, data) - returns new instance of `ioNode.Message`
 
-Creates `io-node` instance. It is pretty simple. And just triggers a bunch of events:
+It is pretty simple. And just triggers a bunch of events:
 
     app <app_node_message.type> (can me set by messageInstance.setType)
         app publish                      emited when app-node sends command to publish something (send, broadcast)
@@ -136,6 +137,20 @@ Creates `io-node` instance. It is pretty simple. And just triggers a bunch of ev
     socket connection                    emited when some client is conected to SocketIO
     socket message                       emited when some client sends message
     socket disconnect                    emited when some client is disconnected
+
+You can also send some custom messages from your app-node. It'll emit custom messages with prefix `app `
+
+    ioNode.Message(<ioNode.Server>, client, data):
+        send - sends message to Redis queue
+        setClient(client) - set client, where client is object with key 'sessionId' and some other data
+        setData(data) - sets message data
+        setType(type) - sets message type
+
+Shortcut methods:
+
+    ioCluster.makeIoServer(<socketIo.Listener>, config)
+
+Creates `io-node` instance.
 
 To automatically handle these events you should create instance of `ioEventsHandler`:
 
@@ -148,16 +163,7 @@ This is done by function
 
 This code crates new instance of `io-node` and returns instance of `ioEventsHandler`
 
-    ioNode.Server:
-        createMessage(client, data) - returns new instance of `ioNode.Message`
-
-    ioNode.Message(<ioNode.Server>, client, data):
-        send - sends message to Redis queue
-        setClient(client) - set client, where client is object with key 'sessionId' and some other data
-        setData(data) - sets message data
-        setType(type) - sets message type
-
-You can add custom logic to your node:
+You can add custom logic to your io-node:
 
     var server = http.createServer();
         server.listen(port);
@@ -199,7 +205,7 @@ By default it fires three events:
     message - on some message from client
     disconnect - when client is disconnected
 
-
+Shortcut methods:
 
     ioCluster.makeAppServer(config)
 
