@@ -134,7 +134,7 @@ It is pretty simple. And just triggers a bunch of events:
         app publish                      emited when app-node sends command to publish something (send, broadcast)
         app subscribe-to-channel         emited when app-node sends command to subscribe some client to some channel
         app unsubscribe-from-channel     emited when app-node sends command to unsubscribe some client from some channel
-    socket connection                    emited when some client is conected to SocketIO
+    socket connection                    emited when some client is connected to SocketIO
     socket message                       emited when some client sends message
     socket disconnect                    emited when some client is disconnected
 
